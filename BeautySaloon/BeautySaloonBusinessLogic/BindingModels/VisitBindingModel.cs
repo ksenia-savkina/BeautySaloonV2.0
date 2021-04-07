@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace BeautySaloonBusinessLogic.BindingModels
+{
+    public class VisitBindingModel
+    {
+        public int? Id { get; set; }
+
+        public int? ClientId { get; set; }
+
+        public int? DistributionId { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public Dictionary<int, string> VisitProcedures { get; set; }
+    }
+}
