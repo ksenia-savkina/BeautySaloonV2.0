@@ -173,6 +173,13 @@ namespace BeautySaloonDatabaseImplement.Implements
                 var PurchaseComponents = context.ProcedurePurchases.Where(rec => rec.PurchaseId == model.Id.Value).ToList();
                 context.ProcedurePurchases.RemoveRange(PurchaseComponents.Where(rec =>
                 !model.PurchaseProcedures.ContainsKey(rec.ProcedureId)).ToList());
+
+                foreach (var updateProcedure in PurchaseComponents)
+                {
+
+                    model.PurchaseProcedures.Remove(updateProcedure.ProcedureId);
+                }
+
                 context.SaveChanges();
 
             }

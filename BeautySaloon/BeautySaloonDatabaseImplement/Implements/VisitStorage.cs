@@ -162,6 +162,11 @@ namespace BeautySaloonDatabaseImplement.Implements
 
                 context.ProcedureVisits.RemoveRange(VisitComponents.Where(rec =>
                !model.VisitProcedures.ContainsKey(rec.ProcedureId)).ToList());
+
+                foreach (var updateProcedure in VisitComponents)
+                {
+                    model.VisitProcedures.Remove(updateProcedure.ProcedureId);
+                }
                 context.SaveChanges();
 
             }
