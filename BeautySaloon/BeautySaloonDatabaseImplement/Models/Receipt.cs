@@ -13,9 +13,8 @@ namespace BeautySaloonDatabaseImplement.Models
 
         public virtual Employee Employee { get; set; }
 
-        public int? PurchaseId { get; set; }
-
-        public virtual Purchase Purchase { get; set; }
+        [ForeignKey("ReceiptId")]
+        public virtual List<Purchase> Purchases { get; set; }
 
         [Required]
         public decimal TotalCost { get; set; }

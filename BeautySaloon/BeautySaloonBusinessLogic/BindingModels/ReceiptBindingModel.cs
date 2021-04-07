@@ -9,8 +9,6 @@ namespace BeautySaloonBusinessLogic.BindingModels
 
         public int? EmployeeId { get; set; }
 
-        public int? PurchaseId { get; set; }
-
         public decimal TotalCost { get; set; }
 
         public DateTime PurchaseDate { get; set; }

@@ -19,7 +19,8 @@ namespace BeautySaloonDatabaseImplement.Models
         [ForeignKey("DistributionId")]
         public virtual List<DistributionCosmetic> DistributionCosmetics { get; set; }
 
-        [ForeignKey("DistributionId")]
-        public virtual List<Visit> Visit { get; set; }
+        public int? VisitId { get; set; }
+
+        public virtual Visit Visit { get; set; }
     }
 }

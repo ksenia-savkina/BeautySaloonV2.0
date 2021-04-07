@@ -327,7 +327,7 @@
       <Name>BeautySaloonBusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\BeautySaloonDatabaseImplement\BeautySaloonDatabaseImplement.csproj">
-      <Project>{70b25612-f3aa-4c17-9f63-4a0a626b8e64}</Project>
+      <Project>{d14eef6d-4c4a-4abd-90c6-8f2c3f41355d}</Project>
       <Name>BeautySaloonDatabaseImplement</Name>
     </ProjectReference>
   </ItemGroup>

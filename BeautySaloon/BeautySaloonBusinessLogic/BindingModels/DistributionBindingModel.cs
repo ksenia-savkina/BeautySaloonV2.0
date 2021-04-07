@@ -9,6 +9,8 @@ namespace BeautySaloonBusinessLogic.BindingModels
 
         public int? EmployeeId { get; set; }
 
+        public int? VisitId { get; set; }
+
         public DateTime IssueDate { get; set; }
 
         public Dictionary<int, (string, int)> DistributionCosmetics { get; set; }

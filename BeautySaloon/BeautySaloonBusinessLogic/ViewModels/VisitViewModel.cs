@@ -10,8 +10,6 @@ namespace BeautySaloonBusinessLogic.ViewModels
 
         public int ClientId { get; set; }
 
-        public int? DistributionId { get; set; }
-
         [DisplayName("Дата посещения")]
         public DateTime Date { get; set; }
 

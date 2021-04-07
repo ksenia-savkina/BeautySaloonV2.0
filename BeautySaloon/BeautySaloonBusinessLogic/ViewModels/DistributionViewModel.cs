@@ -11,6 +11,8 @@ namespace BeautySaloonBusinessLogic.ViewModels
 
         public int EmployeeId { get; set; }
 
+        public int? VisitId { get; set; }
+
         [DisplayName("Дата выдачи")]
         public DateTime IssueDate { get; set; }
 

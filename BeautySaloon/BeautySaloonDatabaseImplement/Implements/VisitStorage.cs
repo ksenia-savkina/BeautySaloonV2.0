@@ -17,7 +17,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Visits
                 .Include(rec => rec.Client)
-                .Include(rec => rec.Distribution)
                 .Include(rec => rec.ProcedureVisit)
                 .ThenInclude(rec => rec.Procedure)
                 .ToList()
@@ -26,8 +25,7 @@ namespace BeautySaloonDatabaseImplement.Implements
                     Id = rec.Id,
                     ClientId = rec.ClientId,
                     Date = rec.Date,
-                    VisitProcedures = rec.ProcedureVisit.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName)),
-                    DistributionId = rec.DistributionId
+                    VisitProcedures = rec.ProcedureVisit.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName))
                 })
                .ToList();
             }
@@ -43,7 +41,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Visits
                 .Include(rec => rec.Client)
-                .Include(rec => rec.Distribution)
                 .Include(rec => rec.ProcedureVisit)
                 .ThenInclude(rec => rec.Procedure)
                 .Where(rec => (rec.ClientId == model.ClientId || rec.Date == model.Date))
@@ -53,8 +50,7 @@ namespace BeautySaloonDatabaseImplement.Implements
                     Id = rec.Id,
                     ClientId = rec.ClientId,
                     Date = rec.Date,
-                    VisitProcedures = rec.ProcedureVisit.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName)),
-                    DistributionId = rec.DistributionId
+                    VisitProcedures = rec.ProcedureVisit.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName))
                 }).ToList();
             }
         }
@@ -69,7 +65,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 var visit = context.Visits
                 .Include(rec => rec.Client)
-                .Include(rec => rec.Distribution)
                 .Include(rec => rec.ProcedureVisit)
                 .ThenInclude(rec => rec.Procedure)
                 .FirstOrDefault(rec => rec.Date == model.Date || rec.Id == model.Id);
@@ -79,8 +74,7 @@ namespace BeautySaloonDatabaseImplement.Implements
                      Id = visit.Id,
                      ClientId = visit.ClientId,
                      Date = visit.Date,
-                     VisitProcedures = visit.ProcedureVisit.ToDictionary(recVP => recVP.ProcedureId, recVP => (recVP.Procedure?.ProcedureName)),
-                     DistributionId = visit.DistributionId
+                     VisitProcedures = visit.ProcedureVisit.ToDictionary(recVP => recVP.ProcedureId, recVP => (recVP.Procedure?.ProcedureName))
                  } :
                null;
             }
@@ -154,7 +148,6 @@ namespace BeautySaloonDatabaseImplement.Implements
         {
             visit.Date = model.Date;
             visit.ClientId = (int)model.ClientId;
-            visit.DistributionId = model.DistributionId;
 
             if (visit.Id == 0)
             {

@@ -17,6 +17,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Purchases
                 .Include(rec => rec.Client)
+                .Include(rec => rec.Receipt)
                 .Include(rec => rec.ProcedurePurchase)
                 .ThenInclude(rec => rec.Procedure)
                 .ToList()
@@ -26,7 +27,8 @@ namespace BeautySaloonDatabaseImplement.Implements
                     ClientId = rec.ClientId,
                     Date = rec.Date,
                     Price = rec.Price,
-                    PurchaseProcedures = rec.ProcedurePurchase.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName, recPP.Procedure.Price))
+                    PurchaseProcedures = rec.ProcedurePurchase.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName, recPP.Procedure.Price)),
+                    ReceiptId = rec.ReceiptId
                 })
                .ToList();
 
@@ -43,6 +45,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Purchases
                 .Include(rec => rec.Client)
+                .Include(rec => rec.Receipt)
                 .Include(rec => rec.ProcedurePurchase)
                 .ThenInclude(rec => rec.Procedure)
                 .Where(rec => (rec.ClientId == model.ClientId || rec.Date == model.Date))
@@ -53,7 +56,8 @@ namespace BeautySaloonDatabaseImplement.Implements
                     ClientId = rec.ClientId,
                     Date = rec.Date,
                     Price = rec.Price,
-                    PurchaseProcedures = rec.ProcedurePurchase.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName, recPP.Procedure.Price))
+                    PurchaseProcedures = rec.ProcedurePurchase.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName, recPP.Procedure.Price)),
+                    ReceiptId = rec.ReceiptId
 
                 }).ToList();
             }
@@ -69,6 +73,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 var visit = context.Purchases
                 .Include(rec => rec.Client)
+                .Include(rec => rec.Receipt)
                 .Include(rec => rec.ProcedurePurchase)
                 .ThenInclude(rec => rec.Procedure)
                 .FirstOrDefault(rec => rec.Date == model.Date || rec.Id == model.Id);
@@ -79,7 +84,8 @@ namespace BeautySaloonDatabaseImplement.Implements
                      ClientId = visit.ClientId,
                      Date = visit.Date,
                      Price = visit.Price,
-                     PurchaseProcedures = visit.ProcedurePurchase.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName, recPP.Procedure.Price))
+                     PurchaseProcedures = visit.ProcedurePurchase.ToDictionary(recPP => recPP.ProcedureId, recPP => (recPP.Procedure?.ProcedureName, recPP.Procedure.Price)),
+                     ReceiptId = visit.ReceiptId
                  } :
                null;
             }
@@ -155,6 +161,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             purchase.Date = model.Date;
             purchase.ClientId = (int)model.ClientId;
             purchase.Price = model.Price;
+            purchase.ReceiptId = model.ReceiptId;
 
             if (purchase.Id == 0)
             {

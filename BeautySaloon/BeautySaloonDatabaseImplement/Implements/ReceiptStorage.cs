@@ -17,7 +17,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Receipts
                 .Include(rec => rec.Employee)
-                .Include(rec => rec.Purchase)
                 .Include(rec => rec.ReceiptCosmetics)
                 .ThenInclude(rec => rec.Cosmetic)
                 .ToList()
@@ -27,8 +26,7 @@ namespace BeautySaloonDatabaseImplement.Implements
                     TotalCost = rec.TotalCost,
                     PurchaseDate = rec.PurchaseDate,
                     ReceiptCosmetics = rec.ReceiptCosmetics.ToDictionary(recRC => recRC.CosmeticId, recRC => (recRC.Cosmetic?.CosmeticName, recRC.Count)),
-                    EmployeeId = rec.EmployeeId,
-                    PurchaseId = rec.PurchaseId
+                    EmployeeId = rec.EmployeeId
                 })
                 .ToList();
             }
@@ -44,7 +42,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Receipts
                 .Include(rec => rec.Employee)
-                .Include(rec => rec.Purchase)
                 .Include(rec => rec.ReceiptCosmetics)
                 .ThenInclude(rec => rec.Cosmetic)
                 .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.EmployeeId == model.EmployeeId || rec.PurchaseDate == model.PurchaseDate) ||
@@ -56,8 +53,7 @@ namespace BeautySaloonDatabaseImplement.Implements
                     TotalCost = rec.TotalCost,
                     PurchaseDate = rec.PurchaseDate,
                     ReceiptCosmetics = rec.ReceiptCosmetics.ToDictionary(recRC => recRC.CosmeticId, recRC => (recRC.Cosmetic?.CosmeticName, recRC.Count)),
-                    EmployeeId = rec.EmployeeId,
-                    PurchaseId = rec.PurchaseId
+                    EmployeeId = rec.EmployeeId
                 })
                 .ToList();
             }
@@ -74,7 +70,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 Receipt receipt = context.Receipts
                 .Include(rec => rec.Employee)
-                .Include(rec => rec.Purchase)
                 .Include(rec => rec.ReceiptCosmetics)
                 .ThenInclude(rec => rec.Cosmetic)
                 .FirstOrDefault(rec => rec.PurchaseDate == model.PurchaseDate || rec.Id == model.Id);
@@ -84,8 +79,7 @@ namespace BeautySaloonDatabaseImplement.Implements
                     TotalCost = receipt.TotalCost,
                     PurchaseDate = receipt.PurchaseDate,
                     ReceiptCosmetics = receipt.ReceiptCosmetics.ToDictionary(recRC => recRC.CosmeticId, recRC => (recRC.Cosmetic?.CosmeticName, recRC.Count)),
-                    EmployeeId = receipt.EmployeeId,
-                    PurchaseId = receipt.PurchaseId
+                    EmployeeId = receipt.EmployeeId
                 } : null;
             }
         }
@@ -159,7 +153,6 @@ namespace BeautySaloonDatabaseImplement.Implements
             receipt.TotalCost = model.TotalCost;
             receipt.PurchaseDate = model.PurchaseDate;
             receipt.EmployeeId = (int)model.EmployeeId;
-            receipt.PurchaseId = model.PurchaseId;
 
             if (receipt.Id == 0)
             {

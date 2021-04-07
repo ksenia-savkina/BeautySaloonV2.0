@@ -11,8 +11,6 @@ namespace BeautySaloonBusinessLogic.ViewModels
 
         public int EmployeeId { get; set; }
 
-        public int? PurchaseId { get; set; }
-
         [DisplayName("Общая стоимость")]
         public decimal TotalCost { get; set; }
 

@@ -17,6 +17,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Distributions
                 .Include(rec => rec.Employee)
+                .Include(rec => rec.Visit)
                 .Include(rec => rec.DistributionCosmetics)
                 .ThenInclude(rec => rec.Cosmetic)
                 .ToList()
@@ -25,7 +26,8 @@ namespace BeautySaloonDatabaseImplement.Implements
                     Id = rec.Id,
                     IssueDate = rec.IssueDate,
                     DistributionCosmetics = rec.DistributionCosmetics.ToDictionary(recDC => recDC.CosmeticId, recDC => (recDC.Cosmetic?.CosmeticName, recDC.Count)),
-                    EmployeeId = rec.EmployeeId
+                    EmployeeId = rec.EmployeeId,
+                    VisitId = rec.VisitId
                 })
                 .ToList();
             }
@@ -41,6 +43,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 return context.Distributions
                 .Include(rec => rec.Employee)
+                .Include(rec => rec.Visit)
                 .Include(rec => rec.DistributionCosmetics)
                 .ThenInclude(rec => rec.Cosmetic)
                 .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.EmployeeId == model.EmployeeId || rec.IssueDate == model.IssueDate) ||
@@ -51,7 +54,8 @@ namespace BeautySaloonDatabaseImplement.Implements
                     Id = rec.Id,
                     IssueDate = rec.IssueDate,
                     DistributionCosmetics = rec.DistributionCosmetics.ToDictionary(recDC => recDC.CosmeticId, recDC => (recDC.Cosmetic?.CosmeticName, recDC.Count)),
-                    EmployeeId = rec.EmployeeId
+                    EmployeeId = rec.EmployeeId,
+                    VisitId = rec.VisitId
                 })
                 .ToList();
             }
@@ -68,6 +72,7 @@ namespace BeautySaloonDatabaseImplement.Implements
             {
                 Distribution distribution = context.Distributions
                 .Include(rec => rec.Employee)
+                .Include(rec => rec.Visit)
                 .Include(rec => rec.DistributionCosmetics)
                 .ThenInclude(rec => rec.Cosmetic)
                 .FirstOrDefault(rec => rec.IssueDate == model.IssueDate || rec.Id == model.Id);
@@ -76,7 +81,8 @@ namespace BeautySaloonDatabaseImplement.Implements
                     Id = distribution.Id,
                     IssueDate = distribution.IssueDate,
                     DistributionCosmetics = distribution.DistributionCosmetics.ToDictionary(recDC => recDC.CosmeticId, recDC => (recDC.Cosmetic?.CosmeticName, recDC.Count)),
-                    EmployeeId = distribution.EmployeeId
+                    EmployeeId = distribution.EmployeeId,
+                    VisitId = distribution.VisitId
                 } : null;
             }
         }
@@ -149,6 +155,7 @@ namespace BeautySaloonDatabaseImplement.Implements
         {
             distribution.IssueDate = model.IssueDate;
             distribution.EmployeeId = (int)model.EmployeeId;
+            distribution.VisitId = model.VisitId;
 
             if (distribution.Id == 0)
             {

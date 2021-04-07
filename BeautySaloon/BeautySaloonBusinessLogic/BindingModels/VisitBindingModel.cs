@@ -9,7 +9,6 @@ namespace BeautySaloonBusinessLogic.BindingModels
 
         public int? ClientId { get; set; }
 
-        public int? DistributionId { get; set; }
 
         public DateTime Date { get; set; }
 

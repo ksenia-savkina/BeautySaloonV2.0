@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautySaloonDatabaseImplement.Migrations
 {
     [DbContext(typeof(BeautySaloonDatabase))]
-    [Migration("20210406192811_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20210407194752_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,9 +94,14 @@ namespace BeautySaloonDatabaseImplement.Migrations
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("VisitId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("VisitId");
 
                     b.ToTable("Distributions");
                 });
@@ -249,9 +254,14 @@ namespace BeautySaloonDatabaseImplement.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("ReceiptId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("ReceiptId");
 
                     b.ToTable("Purchases");
                 });
@@ -269,17 +279,12 @@ namespace BeautySaloonDatabaseImplement.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PurchaseId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("TotalCost")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("PurchaseId");
 
                     b.ToTable("Receipts");
                 });
@@ -322,14 +327,9 @@ namespace BeautySaloonDatabaseImplement.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DistributionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("DistributionId");
 
                     b.ToTable("Visits");
                 });
@@ -350,6 +350,10 @@ namespace BeautySaloonDatabaseImplement.Migrations
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BeautySaloonDatabaseImplement.Models.Visit", "Visit")
+                        .WithMany("Distributions")
+                        .HasForeignKey("VisitId");
                 });
 
             modelBuilder.Entity("BeautySaloonDatabaseImplement.Models.DistributionCosmetic", b =>
@@ -413,6 +417,10 @@ namespace BeautySaloonDatabaseImplement.Migrations
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BeautySaloonDatabaseImplement.Models.Receipt", "Receipt")
+                        .WithMany("Purchases")
+                        .HasForeignKey("ReceiptId");
                 });
 
             modelBuilder.Entity("BeautySaloonDatabaseImplement.Models.Receipt", b =>
@@ -420,12 +428,6 @@ namespace BeautySaloonDatabaseImplement.Migrations
                     b.HasOne("BeautySaloonDatabaseImplement.Models.Employee", "Employee")
                         .WithMany("Receipt")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeautySaloonDatabaseImplement.Models.Purchase", "Purchase")
-                        .WithMany("Receipt")
-                        .HasForeignKey("PurchaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -450,12 +452,6 @@ namespace BeautySaloonDatabaseImplement.Migrations
                     b.HasOne("BeautySaloonDatabaseImplement.Models.Client", "Client")
                         .WithMany("Visit")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeautySaloonDatabaseImplement.Models.Distribution", "Distribution")
-                        .WithMany("Visit")
-                        .HasForeignKey("DistributionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

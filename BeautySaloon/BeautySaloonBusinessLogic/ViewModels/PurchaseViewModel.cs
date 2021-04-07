@@ -9,6 +9,8 @@ namespace BeautySaloonBusinessLogic.ViewModels
         public int Id { get; set; }
         public int ClientId { get; set; }
 
+        public int? ReceiptId { get; set; }
+
         [DisplayName("Дата покупки")]
         public DateTime Date { get; set; }
 

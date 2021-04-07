@@ -12,8 +12,6 @@ namespace BeautySaloonDatabaseImplement.Models
 
         public int ClientId { get; set; }
 
-        public int? DistributionId { get; set; }
-
         [Required]
         public DateTime Date { get; set; }
 
@@ -22,6 +20,7 @@ namespace BeautySaloonDatabaseImplement.Models
 
         public virtual Client Client { get; set; }
 
-        public virtual Distribution Distribution { get; set; }
+        [ForeignKey("VisitId")]
+        public virtual List<Distribution> Distributions { get; set; }
     }
 }
