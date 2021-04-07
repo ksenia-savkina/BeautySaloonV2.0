@@ -239,6 +239,9 @@
     <Compile Include="WindowInital.xaml.cs">
       <DependentUpon>WindowInital.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowLinkingDistribution.xaml.cs">
+      <DependentUpon>WindowLinkingDistribution.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowReceipt.xaml.cs">
       <DependentUpon>WindowReceipt.xaml</DependentUpon>
     </Compile>
@@ -287,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowInital.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowLinkingDistribution.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

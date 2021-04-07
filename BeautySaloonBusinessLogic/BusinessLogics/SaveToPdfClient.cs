@@ -5,7 +5,7 @@ using MigraDoc.Rendering;
 using System.Collections.Generic;
 
 
-namespace BeautySaloonBusinessLogic.BusinessLogic
+namespace BeautySaloonBusinessLogic.BusinessLogics
 {
     class SaveToPdfClient
     {

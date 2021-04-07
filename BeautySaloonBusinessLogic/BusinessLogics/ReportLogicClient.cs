@@ -1,4 +1,4 @@
-﻿namespace BeautySaloonBusinessLogic.BusinessLogic
+﻿namespace BeautySaloonBusinessLogic.BusinessLogics
 {
     public class ReportLogicClient
     {

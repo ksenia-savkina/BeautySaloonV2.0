@@ -2,7 +2,7 @@
 using System.Windows;
 using BeautySaloonBusinessLogic.BindingModels;
 using Unity;
-using BeautySaloonBusinessLogic.BusinessLogic;
+using BeautySaloonBusinessLogic.BusinessLogics;
 using BeautySaloonBusinessLogic.ViewModels;
 
 namespace BeautySaloonViewClient

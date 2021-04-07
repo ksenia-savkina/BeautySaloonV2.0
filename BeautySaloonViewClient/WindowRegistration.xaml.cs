@@ -1,5 +1,5 @@
 ﻿using BeautySaloonBusinessLogic.BindingModels;
-using BeautySaloonBusinessLogic.BusinessLogic;
+using BeautySaloonBusinessLogic.BusinessLogics;
 using System;
 using System.Windows;
 using Unity;

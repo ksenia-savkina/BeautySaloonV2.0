@@ -5,7 +5,7 @@ using BeautySaloonBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 
-namespace BeautySaloonBusinessLogic.BusinessLogic
+namespace BeautySaloonBusinessLogic.BusinessLogics
 {
     public class VisitLogic
     {

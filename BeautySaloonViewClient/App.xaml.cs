@@ -1,6 +1,6 @@
 ﻿using Unity.Lifetime;
 using System.Windows;
-using BeautySaloonBusinessLogic.BusinessLogic;
+using BeautySaloonBusinessLogic.BusinessLogics;
 using BeautySaloonBusinessLogic.Interfaces;
 using BeautySaloonDatabaseImplement.Implements;
 using System;

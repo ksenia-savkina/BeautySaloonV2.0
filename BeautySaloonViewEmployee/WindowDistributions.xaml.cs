@@ -44,7 +44,8 @@ namespace BeautySaloonViewEmployee
                 {
                     dataGrid.ItemsSource = list;
                     dataGrid.Columns[1].Visibility = Visibility.Hidden;
-                    dataGrid.Columns[3].Visibility = Visibility.Hidden;
+                    //dataGrid.Columns[2].Visibility = Visibility.Hidden;
+                    dataGrid.Columns[4].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
@@ -104,7 +105,8 @@ namespace BeautySaloonViewEmployee
 
         private void buttonLinking_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowLinkingDistribution>();
+            window.EmployeeId = (int)id;
         }
 
         /// <summary>

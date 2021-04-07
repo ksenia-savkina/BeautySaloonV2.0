@@ -6,7 +6,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Linq;
 
-namespace BeautySaloonBusinessLogic.BusinessLogic
+namespace BeautySaloonBusinessLogic.BusinessLogics
 {
     static class SaveToExcelClient
     {

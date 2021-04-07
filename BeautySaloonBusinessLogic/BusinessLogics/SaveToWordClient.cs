@@ -4,7 +4,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
 
-namespace BeautySaloonBusinessLogic.BusinessLogic
+namespace BeautySaloonBusinessLogic.BusinessLogics
 {
     static class SaveToWordClient
     {

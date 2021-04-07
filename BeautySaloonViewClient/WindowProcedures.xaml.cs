@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BeautySaloonBusinessLogic.ViewModels;
-using BeautySaloonBusinessLogic.BusinessLogic;
+using BeautySaloonBusinessLogic.BusinessLogics;
 using BeautySaloonBusinessLogic.BindingModels;
 using Unity;
 using System.Data;

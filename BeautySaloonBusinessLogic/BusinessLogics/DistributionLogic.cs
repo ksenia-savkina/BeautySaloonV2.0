@@ -10,9 +10,12 @@ namespace BeautySaloonBusinessLogic.BusinessLogics
     {
         private readonly IDistributionStorage _distributionStorage;
 
-        public DistributionLogic(IDistributionStorage distributionStorage)
+        private readonly IVisitStorage _visitStorage;
+
+        public DistributionLogic(IDistributionStorage distributionStorage, IVisitStorage visitStorage)
         {
             _distributionStorage = distributionStorage;
+            _visitStorage = visitStorage;
         }
 
         public List<DistributionViewModel> Read(DistributionBindingModel model)
@@ -53,6 +56,43 @@ namespace BeautySaloonBusinessLogic.BusinessLogics
                 throw new Exception("Выдача не найдена");
             }
             _distributionStorage.Delete(model);
+        }
+
+        public void Linking(DistributionLinkingBindingModel model)
+        {
+            var distribution = _distributionStorage.GetElement(new DistributionBindingModel
+            {
+                Id = model.DistributionId
+            });
+
+            var visit = _visitStorage.GetElement(new VisitBindingModel
+            {
+                Id = model.VisitId
+            });
+
+            if (distribution == null)
+            {
+                throw new Exception("Не найдена выдача");
+            }
+
+            if (visit == null)
+            {
+                throw new Exception("Не найдено посещение");
+            }
+
+            if (distribution.VisitId.HasValue)
+            {
+                throw new Exception("Данная выдача уже привязана к посещению");
+            }
+
+            _distributionStorage.Update(new DistributionBindingModel
+            {
+                Id = distribution.Id,
+                IssueDate = distribution.IssueDate,
+                DistributionCosmetics = distribution.DistributionCosmetics,
+                EmployeeId = distribution.EmployeeId,
+                VisitId = distribution.VisitId
+            });
         }
     }
 }
